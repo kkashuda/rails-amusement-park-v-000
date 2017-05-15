@@ -1,6 +1,6 @@
-require 'pry'
 class AttractionsController < ApplicationController 
-  before_action :admin?, only: [:edit]
+  before_action :admin?, only: [:edit, :update, :create]
+  before_action :set!, only: [:edit, :show, :update]
 
 
   def index 
@@ -8,7 +8,6 @@ class AttractionsController < ApplicationController
   end 
   
   def show 
-    @attraction = Attraction.find_by(id: params[:id])
   end 
   
   def new 
@@ -21,18 +20,18 @@ class AttractionsController < ApplicationController
   end 
 
   def update 
-    @attraction = Attraction.find(params[:id])
     @attraction.update(attraction_params)
   end 
   
   def edit 
-    @attraction = Attraction.find(params[:id])
   end
   
-  
-
   def admin?
     redirect_to root_path unless current_user.admin 
+  end 
+
+  def set!
+    @attraction = Attraction.find_by(id: params[:id])
   end 
   
   private 
@@ -40,6 +39,5 @@ class AttractionsController < ApplicationController
   def attraction_params 
     params.require(:attraction).permit(:name, :tickets, :nausea_rating, :happiness_rating, :min_height)
   end 
-  
 
 end 

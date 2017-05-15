@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
- include Pundit
   protect_from_forgery with: :exception
   helper_method :current_user, :logged_in?
 
@@ -10,7 +9,4 @@ class ApplicationController < ActionController::Base
   def logged_in?
     !!current_user
   end
-  
-  
-
 end

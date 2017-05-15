@@ -1,5 +1,5 @@
-require 'pry'
 class UsersController < ApplicationController 
+  
   def index 
   end 
 
@@ -13,7 +13,6 @@ class UsersController < ApplicationController
     end 
   end 
   
-
   def show 
     redirect_to root_path unless logged_in?  
   end 
@@ -36,5 +35,4 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :password, :height, :tickets, :nausea, :happiness, :admin)
   end 
   
-
 end 

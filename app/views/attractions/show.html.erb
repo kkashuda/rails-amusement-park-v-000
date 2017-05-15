@@ -1,10 +1,7 @@
 <h1><%= @attraction.name %></h1>
 <% if current_user.admin %> 
-<%= link_to "Edit Attraction", edit_attraction_path(@attraction) %> 
+  <%= link_to "Edit Attraction", edit_attraction_path(@attraction) %> 
 <% else %> 
-<%= form_for @attraction, url: user_path(current_user.id) do |f| %>
- <%= f.hidden_field :attraction_id, value: @attraction.id %>
- <%= f.submit "Go on this ride" %>
- <% end %>
- <% end %> 
+  <%= render "ride" %> 
+<% end %> 
 
